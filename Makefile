@@ -1,4 +1,4 @@
-PROGS := ls mkdir
+PROGS := ls mkdir mkfile append cat
 
 .PHONY: all $(PROGS) clean
 
