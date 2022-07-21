@@ -3,3 +3,6 @@ mkdir
 mkfile
 append
 cat
+useradd
+userinfo
+usermod
