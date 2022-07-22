@@ -22,5 +22,12 @@ extern "C" void _start(std::Runtime rt) {
 	}
 	path = std::simplifyPath(path);
 
-	std::exit(std::mkfile(path));
+	auto err = std::mkfile(path);
+	if(err != std::FS_OK) {
+		std::printf("mkdir: error creating '%s': %s\n",
+					path.c_str(),
+					std::VFS::errStr(err));
+	}
+
+	std::exit(err);
 }
