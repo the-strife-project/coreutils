@@ -1,4 +1,4 @@
-PROGS := ls mkdir mkfile append cat useradd userinfo usermod su
+PROGS := ls mkdir mkfile append cat useradd userinfo usermod su mem
 
 .PHONY: all $(PROGS) clean
 
