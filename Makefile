@@ -1,4 +1,5 @@
-PROGS := ls mkdir mkfile append cat useradd userinfo usermod su mem
+PROGS := ls mkdir mkfile append cat useradd userinfo usermod su mem aclget \
+	acltree acladd
 
 .PHONY: all $(PROGS) clean
 

@@ -8,3 +8,6 @@ userinfo
 usermod
 su
 mem
+aclget
+acltree
+acladd
