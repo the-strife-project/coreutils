@@ -2,6 +2,7 @@
 #include <tasks>
 #include <users>
 #include <cstdio>
+#include <kkill>
 
 extern "C" void _start(std::Runtime rt) {
 	auto rtv = rt.parse();
@@ -24,10 +25,23 @@ extern "C" void _start(std::Runtime rt) {
 	}
 
 	auto pid = std::run("/cd/bin/shell", {}, rtv.env);
+	if(!pid) {
+		std::printf("su: could not launch shell\n");
+		std::printf("Hint: does user have access to /cd/bin?\n");
+		std::exit(95);
+	}
+
 	if(std::getLastLoaderError()) {
 		std::printf("su: could not launch shell\n");
 		std::exit(97);
 	}
 	std::wait(pid);
-	std::exit();
+
+	auto kr = std::getKillReason(pid);
+	if(kr != std::kkill::OK) {
+		std::printf("su: killed by kernel: %d\n", kr);
+		std::exit(~0ull);
+	}
+
+	std::exit(std::getExitValue(pid));
 }
